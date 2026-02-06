@@ -21,7 +21,7 @@ resource "aws_security_group" "db_sg" {
 
 resource "aws_db_instance" "this" {
   identifier        = "fabras-dev-db"
-  engine            = "postgres" // TODO: Change to SQL Server
+  engine            = "sqlserver-ex"
   instance_class    = "db.t3.micro"
   allocated_storage = 20
 
