@@ -46,9 +46,9 @@ module "rds" {
 module "secrets" {
   source = "../../modules/secrets"
 
-  auth_db_secret_name     = "authservice/db"
-  auth_jwt_secret_name    = "authservice/jwt"
-  products_db_secret_name = "products/db"
+  auth_db_secret_name      = "authservice/db"
+  auth_jwt_secret_name     = "authservice/jwt"
+  products_db_secret_name  = "products/db"
   products_jwt_secret_name = "products/jwt"
 
   db_endpoint = module.rds.db_endpoint
@@ -73,10 +73,10 @@ module "sqs" {
 
 # ALB
 module "alb" {
-  source = "../../modules/alb"
-  vpc_id             = module.vpc.vpc_id
-  public_subnet_ids  = module.vpc.public_subnet_ids
-  alb_name           = "fabras-dev-alb"
+  source            = "../../modules/alb"
+  vpc_id            = module.vpc.vpc_id
+  public_subnet_ids = module.vpc.public_subnet_ids
+  alb_name          = "fabras-dev-alb"
 }
 
 # ECS Cluster + Services
@@ -88,7 +88,7 @@ module "ecs" {
   vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
 
-  alb_arn              = module.alb.alb_arn
+  alb_arn               = module.alb.alb_arn
   alb_security_group_id = module.alb.alb_sg_id
 
   auth_ecr_repo_url     = module.ecr.repositories["fabras-authservice"]
@@ -99,8 +99,8 @@ module "ecs" {
   products_db_secret_arn  = module.secrets.products_db_secret_arn
   products_jwt_secret_arn = module.secrets.products_jwt_secret_arn
 
-  sqs_queue_arn       = module.sqs.queue_arn
-  dynamodb_table_arn  = module.dynamodb.table_arn
+  sqs_queue_arn      = module.sqs.queue_arn
+  dynamodb_table_arn = module.dynamodb.table_arn
 
   auth_image_tag     = var.auth_image_tag
   products_image_tag = var.products_image_tag
