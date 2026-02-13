@@ -47,7 +47,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -var="db_password=${{ secrets.DB_PASSWORD }}" -var="db_username=${{ secrets.DB_USERNAME }}" -out=tfplan
 
       # Só aplica quando for push na main (não em PR)
       - name: Terraform Apply
