@@ -209,15 +209,17 @@ resource "aws_ecs_service" "products" {
 ###############################################
 
 resource "aws_lb_target_group" "auth_tg" {
-  name     = "authservice-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "authservice-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
 }
 
 resource "aws_lb_target_group" "products_tg" {
-  name     = "products-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  name        = "products-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
 }
