@@ -107,8 +107,6 @@ module "ecs" {
   auth_image_tag     = var.auth_image_tag
   products_image_tag = var.products_image_tag
 
-  auth_tg_arn     = module.ecs.auth_tg_arn
-  products_tg_arn = module.ecs.products_tg_arn
 }
 
 # S3 para React (deploy depois)
