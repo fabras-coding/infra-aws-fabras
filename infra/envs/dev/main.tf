@@ -77,6 +77,8 @@ module "alb" {
   vpc_id            = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnet_ids
   alb_name          = "fabras-dev-alb"
+  auth_tg_arn       = module.ecs.auth_tg_arn
+  products_tg_arn   = module.ecs.products_tg_arn
 }
 
 # ECS Cluster + Services
